@@ -1,11 +1,11 @@
 function init() {
+    /* Initialize the dashboard with data from sample id 940 */
     // Grab a reference to the dropdown select element
     let selector = d3.select('#selDataset');
 
     // Use the list of sample names to populate the select options
     d3.json('static/data/samples.json').then((data) => {
         let sampleNames = data.names;
-        console.log(data);
         sampleNames.forEach((name) => {
             selector
                 .append('option')
@@ -24,10 +24,9 @@ function init() {
 init();
 
 function optionChanged(newSample) {
-    // Fetch new data each time a new sample is selected
+    /* Fetch data each time a new sample is selected from the dropdown menu */
     buildMetadata(newSample);
     buildCharts(newSample);
-
 }
 
 // Demographics Panel
@@ -56,7 +55,7 @@ function buildMetadata(sample) {
 
 // 1. Create the buildCharts function.
 function buildCharts(sample) {
-    /* Builds horizontal bar chart based on data for given `sample` */
+    /* Builds bar, bubble, and gauge charts for currently selected sample id */
     // 2. Use d3.json to load and retrieve the samples.json file
     d3.json('static/data/samples.json').then((data) => {
         // 3. Create a variable that holds the samples array.
