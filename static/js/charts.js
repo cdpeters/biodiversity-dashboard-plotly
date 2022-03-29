@@ -3,7 +3,7 @@ function init() {
     let selector = d3.select('#selDataset');
 
     // Use the list of sample names to populate the select options
-    d3.json('samples.json').then((data) => {
+    d3.json('static/data/samples.json').then((data) => {
         let sampleNames = data.names;
         console.log(data);
         sampleNames.forEach((name) => {
@@ -34,7 +34,7 @@ function optionChanged(newSample) {
 function buildMetadata(sample) {
     /* Matches metadata for the parameter sample and appends the data to the
        demographic panel */
-    d3.json('samples.json').then((data) => {
+    d3.json('static/data/samples.json').then((data) => {
         let metadata = data.metadata;
         // Filter the data for the object with the desired sample number. Note
         // that the id on metadata objects is a integer, so sample will be
@@ -58,7 +58,7 @@ function buildMetadata(sample) {
 function buildCharts(sample) {
     /* Builds horizontal bar chart based on data for given `sample` */
     // 2. Use d3.json to load and retrieve the samples.json file
-    d3.json('samples.json').then((data) => {
+    d3.json('static/data/samples.json').then((data) => {
         // 3. Create a variable that holds the samples array.
         let samples = data.samples;
         // 4. Create a variable that filters the samples for the object with the
@@ -93,7 +93,7 @@ function buildCharts(sample) {
             y: yticks,
             hovertext: otuLabels,
             marker: {
-                color: '#337ab7'
+                color: '#499195'
             },
             orientation: 'h'
         }];
@@ -140,6 +140,7 @@ function buildCharts(sample) {
             xaxis: {
                 title: 'OTU ID'
             },
+            width: 1200,
             // margin: {
             //     autoexpand: true
             // },
